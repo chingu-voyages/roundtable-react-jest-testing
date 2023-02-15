@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import './App.css'
 
 function App() {
+  const [errorMessage, setErrorMessage] = React.useState()
   const [celciusTemp, setCelciusTemp] = useState("")
   const [fahrenheitTemp, setFahrenheitTemp] = useState("")
+
+  // Copied from https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+  const isNumeric = (str) => {
+    if (typeof str != "string") {
+      return false // we only process strings!  
+    }
+
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+  }
 
   const updateCelciusTemp = (e) => {
     setFahrenheitTemp("")
@@ -29,12 +40,21 @@ function App() {
   }
 
   const convertTemperature = () => {
+    setErrorMessage('')
     if (celciusTemp !== '') {
+      if (!isNumeric(celciusTemp)) {
+        setErrorMessage('Celcius temperature isn\'t numeric')
+        return
+      }
       setFahrenheitTemp(convertToFahrenheit())
       return
     }
 
     if (fahrenheitTemp !== '') {
+      if (!isNumeric(celciusTemp)) {
+        setErrorMessage('Fahrenheit temperature isn\'t numeric')
+        return
+      }
       setCelciusTemp(convertToCelcius())
       return
     }
@@ -59,6 +79,8 @@ function App() {
         value={ fahrenheitTemp }
         onChange={ (e) => updateFahrenheitTemp(e) }
       />
+      
+      <p className="error">{ errorMessage }</p>
 
       <span>
         <button type="button" className="btn"
