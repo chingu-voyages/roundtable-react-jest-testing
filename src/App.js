@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import './App.css'
-import { convertToCelcius } from "./util/convertToCelcius";
+import { convertToCelcius, convertToFahrenheit } from "./util/temperatureConversions"
+import { isNumeric } from "./util/helpers"
 
 function App() {
   const [errorMessage, setErrorMessage] = React.useState()
   const [celciusTemp, setCelciusTemp] = useState("")
   const [fahrenheitTemp, setFahrenheitTemp] = useState("")
-
-  // Copied from https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
-  const isNumeric = (str) => {
-    if (typeof str != "string") {
-      return false // we only process strings!  
-    }
-
-    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
-  }
 
   const updateCelciusTemp = (e) => {
     setFahrenheitTemp("")
@@ -30,16 +21,6 @@ function App() {
   const resetTemperatures = () => {
     setCelciusTemp("")
     setFahrenheitTemp("")
-  }
-
-  /*
-  const convertToCelcius = () => {
-    return (fahrenheitTemp - 32) * (5/9)
-  }
-  */
-
-  const convertToFahrenheit = () => {
-    return ((celciusTemp * (9/5)) + 32)
   }
 
   const convertTemperature = () => {
