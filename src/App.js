@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './App.css'
+import { convertToCelcius } from "./util/convertToCelcius";
 
 function App() {
   const [errorMessage, setErrorMessage] = React.useState()
@@ -31,9 +32,11 @@ function App() {
     setFahrenheitTemp("")
   }
 
+  /*
   const convertToCelcius = () => {
     return (fahrenheitTemp - 32) * (5/9)
   }
+  */
 
   const convertToFahrenheit = () => {
     return ((celciusTemp * (9/5)) + 32)
@@ -51,11 +54,11 @@ function App() {
     }
 
     if (fahrenheitTemp !== '') {
-      if (!isNumeric(celciusTemp)) {
+      if (!isNumeric(fahrenheitTemp)) {
         setErrorMessage('Fahrenheit temperature isn\'t numeric')
         return
       }
-      setCelciusTemp(convertToCelcius())
+      setCelciusTemp(convertToCelcius(fahrenheitTemp))
       return
     }
 
