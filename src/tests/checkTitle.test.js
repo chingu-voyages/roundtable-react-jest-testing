@@ -6,4 +6,4 @@ test('Verify the title is correct', () => {
   const titleElement = screen.getByText(/Temperature Converter/i)
   expect(titleElement).toBeInTheDocument()
   console.log(`Title verification test passed. Title: ${ titleElement.textContent }`)
-});
+})
