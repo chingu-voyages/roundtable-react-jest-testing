@@ -51,7 +51,7 @@ function App() {
     }
 
     if (fahrenheitTemp !== '') {
-      if (!isNumeric(celciusTemp)) {
+      if (!isNumeric(fahrenheitTemp)) {
         setErrorMessage('Fahrenheit temperature isn\'t numeric')
         return
       }
@@ -69,7 +69,7 @@ function App() {
       </h1>
       
       <label htmlFor="celcius" className="temp-label">Enter Celcius:</label>
-      <input type="text" name="fahrenheit" placeholder="Celcius temp."
+      <input type="text" name="celcius" placeholder="Celcius temp."
         value={ celciusTemp }
         onChange={ (e) => updateCelciusTemp(e) }
       />
@@ -83,11 +83,11 @@ function App() {
       <p className="error">{ errorMessage }</p>
 
       <span>
-        <button type="button" className="btn"
+        <button type="button" className="btn" name="reset"
           onClick={() => resetTemperatures() }>
           Reset
         </button>
-        <button type="button" className=""
+        <button type="button" className="" name="convert"
           onClick={() => convertTemperature() }>
           Convert
         </button>
