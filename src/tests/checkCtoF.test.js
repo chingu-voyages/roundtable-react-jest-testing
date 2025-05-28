@@ -18,7 +18,9 @@ test('Test the conversion of Celcius to Fahrenheit', async () => {
   // Verify the conversion is correct
   expect(celciusInput).toHaveValue(`0`)
   expect(fahrenheitInput).toHaveValue(`32`)
-  console.log(`Celcius to Fahrenheit conversion test passed. Celcius: ${ celciusInput.value }, Fahrenheit: ${ fahrenheitInput.value }`) 
+  console.log(`Celcius to Fahrenheit conversion test passed. \
+Celcius: ${ celciusInput.value }, \
+Fahrenheit: ${ fahrenheitInput.value }`) 
 })
 
 
